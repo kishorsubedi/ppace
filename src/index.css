@@ -1,0 +1,109 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.topBarContainer {
+ background-color: black;
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+ flex-wrap: wrap;
+ width: 100%;
+ height: 200px;
+ position: sticky;
+ top:0;
+}
+
+.mainBarContainer {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 1200px;
+ }
+
+ .image {
+   flex: 1;
+ }
+ 
+.imgFlex{
+  flex: 1;
+  height:100%;
+}
+
+.announcementFlex{
+  flex: 1;
+  align-content: center;
+  margin: auto;
+  height: 100%;
+  width: 200px;
+}
+
+.loginFlex {
+  flex: 0.7;
+  background-color: black;
+  height:100%;
+  width: 200px;
+ }
+ 
+ .loginBox {
+  background-color: grey;
+  height: 90%;
+  margin-top: 3%;
+  margin-right: 3%;
+ }
+
+ .mainbar {
+   background-color: #242424;
+   height: 1200px;
+ }
+
+ .Posts{
+   background-color: #171717;
+   margin: auto;
+   margin-bottom: 20px;
+   width: 75%;
+   height: 200px;
+   color: #4db2ff;
+   text-align: center;
+ }
+
+ .CreatorNameClass{
+   float: left;
+   display: inline;
+ }
+
+ .PostTitleClass{
+  text-align: center;
+  display: inline;
+  font-size:30px;
+ }
+
+ .EventDateClass{
+  float: right;
+  display: inline;
+ }
+
+ .PostContentClass{
+  color: white;
+ }
+ 
+ .PostsDelete{
+   height: 100%;
+   width: 50px;
+   display: inline;
+   float: right;
+   color:red;
+ }
