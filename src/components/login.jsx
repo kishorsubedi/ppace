@@ -2,13 +2,20 @@ import React, { Component } from "react";
 import Mainbar from "./mainbar";
 
 export default class Login extends Component {
-    constructor(){
-        super();
-        this.state={username:'',password:'',isAdmin:false}
-    }
+
+    state={username:'',password:'',isAdmin:false}
 
     handleChange(e) {
         this.setState({ [e.target.name] : e.target.value });
+    }
+
+    setAdminState(json){
+        console.log("sd");
+        if(json=="true"){ 
+            this.setState({isAdmin:false});
+            return;
+        }
+        this.setState({isAdmin:false});
     }
 
     render() {
@@ -29,14 +36,6 @@ export default class Login extends Component {
         );
     }
     
-    setAdminState(json){
-        console.log("sd");
-        if(json=="true"){
-            this.state.isAdmin = true;
-            return;
-        }
-        this.state.isAdmin = false;
-    }
 
     async handleClick(event){
         //console.log(this.state.username);
