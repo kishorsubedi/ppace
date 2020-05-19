@@ -4,7 +4,6 @@ class Mainbar extends Component {
 
     constructor() {
         super();
-        //this.state = { data: [] };
     }
 
     state = {

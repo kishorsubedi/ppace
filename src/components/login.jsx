@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import Mainbar from "./mainbar";
-import $ from ‘jquery’;
 
 export default class Login extends Component {
     constructor(){
         super();
-        this.state={username:'',password:''}
+        this.state={username:'',password:'',isAdmin:false}
     }
 
     handleChange(e) {
@@ -29,15 +28,26 @@ export default class Login extends Component {
             </React.Fragment>
         );
     }
+    
+    setAdminState(json){
+        console.log("sd");
+        if(json=="true"){
+            this.state.isAdmin = true;
+            return;
+        }
+        this.state.isAdmin = false;
+    }
 
     async handleClick(event){
-        console.log(this.state.username);
-        console.log(this.state.password);
-        var url = "http://www.ppace.azurewebsites.net/auth?" + $.param({uid: "bar", pwd: "kuuq"})
+        //console.log(this.state.username);
+        //console.log(this.state.password);
+        fetch(`https://ppace.azurewebsites.net/auth?uid=`+ this.state.username + `&pwd=` + this.state.password)
+          .then(res => res.json())
+          .then(json => this.setAdminState(json));
 
         //send this data to backend, return true or false. set mainbar's variable accordingly
-        let response = await fetch(url);
-        let data = await response.json()
-        console.log(data);
+        //let response = await fetch(url);
+        //let data = await response.json()
+        //console.log(data);
     }
 }

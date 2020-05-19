@@ -28,7 +28,7 @@ class Topbar extends Component {
                             <Login/>
                         </div>
                     </div>
-                </div>
+                </div> 
 
         </React.Fragment> );
     }
