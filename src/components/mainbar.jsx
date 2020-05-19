@@ -60,6 +60,7 @@ class Mainbar extends Component {
     }
 
     render() { 
+        console.log(this.props.admin);
         return (<React.Fragment>
             <div className="mainbar">
                 {this.createPostBox()}

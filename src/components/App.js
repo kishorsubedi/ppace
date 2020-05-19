@@ -7,11 +7,27 @@ import Topbar from './topbar';
 import Mainbar from './mainbar';
 
 export default class App extends Component{
+    state= {username:'',password:'',isAdmin:false}
+
+    handleChange = (e) => {
+        this.setState({ [e.target.name] : e.target.value });
+    }
+
+    setAdminState = (json) => {
+        console.log(json);
+        if(String(json) === "true"){ 
+            console.log("ds");
+            this.setState({isAdmin:true});
+            return;
+        }
+        this.setState({isAdmin:false});
+    }
+
     render(){
         return(
             <React.Fragment> 
-                <Topbar/>
-                <Mainbar/>
+                <Topbar handleChange={this.handleChange} setAdminState={this.setAdminState} username={this.state.username} password={this.state.password}/>
+                <Mainbar admin={this.state.isAdmin}/>
             </React.Fragment>
             );
     }
