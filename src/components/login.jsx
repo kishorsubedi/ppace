@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Mainbar from "./mainbar";
+import $ from ‘jquery’;
 
 export default class Login extends Component {
     constructor(){
@@ -28,8 +30,14 @@ export default class Login extends Component {
         );
     }
 
-    handleClick(event){
+    async handleClick(event){
         console.log(this.state.username);
         console.log(this.state.password);
+        var url = "http://www.ppace.azurewebsites.net/auth?" + $.param({uid: "bar", pwd: "kuuq"})
+
+        //send this data to backend, return true or false. set mainbar's variable accordingly
+        let response = await fetch(url);
+        let data = await response.json()
+        console.log(data);
     }
 }

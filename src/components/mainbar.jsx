@@ -9,7 +9,8 @@ class Mainbar extends Component {
 
     state = {
         names : ['James', 'Paul', 'John', 'George', 'Ringo'],
-        data: []
+        data: [],
+        isAdmin: true
     }
 
     componentDidMount() {
@@ -28,10 +29,19 @@ class Mainbar extends Component {
                 </div>
             );
     }
-    render() { 
-        return (<React.Fragment>
-            <div className="mainbar">
-                {this.state.data.map(el => (
+
+    createPostBox(){
+        var ifTrue = <div className="Posts">Kishor</div>;
+        var ifNotTrue = <div></div>;
+        if(this.state.isAdmin){
+            return ifTrue;
+        }
+        return (ifNotTrue);
+    }
+
+    allOtherPostsBox(){
+        return(<div> 
+            {this.state.data.map(el => (
                     <div>
                         <div className="PostsDelete">
                             Delete
@@ -46,7 +56,15 @@ class Mainbar extends Component {
                         
                     </div>
                            
-                ))}             
+                ))}  
+        </div>)
+    }
+
+    render() { 
+        return (<React.Fragment>
+            <div className="mainbar">
+                {this.createPostBox()}
+                {this.allOtherPostsBox()}              
             </div>
         </React.Fragment> );
     }
