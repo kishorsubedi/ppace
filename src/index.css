@@ -24,17 +24,6 @@ code {
  top:0;
 }
 
-.mainBarContainer {
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-  height: auto;
-  min-height: 1200px;
- }
-
  .image {
    flex: 1;
  }
@@ -68,7 +57,8 @@ code {
 
  .mainbar {
    background-color: #242424;
-   height: 1200px;
+   height: auto;
+   min-height: 1200px;
  }
 
  .Posts{
@@ -99,6 +89,8 @@ code {
 
  .PostContentClass{
   color: white;
+  padding: 20px;
+  border: 2px solid #449e9a63;
  }
  
  .PostsDelete{
