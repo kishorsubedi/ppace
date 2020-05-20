@@ -107,8 +107,11 @@ code {
    float: right;
    color:red;
  }
+
  .PostsCreate{
    color:#00ffdd;
+   background-color: #242424;
+   width:auto;
  }
 
  .InputPostContentClass{

@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import FilledInput from '@material-ui/core/FilledInput';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
 
 class Mainbar extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
 
     state = {
-        names : ['James', 'Paul', 'John', 'George', 'Ringo'],
-        data: [],
+        postTitle: '',
+        eventDate: '',
+        postContent: '',
+        data: []
     }
 
     componentDidMount() {
@@ -26,19 +20,19 @@ class Mainbar extends Component {
           .then(json => this.setState({ data: json }));
     }
 
-    listofPeople(){
-        return(<div>
-                    {this.state.names.map(name => (
-                        <li>
-                        {name}
-                        </li>
-                    ))}
-                </div>
-            );
-    }
+    clear = () =>{
+        // return the state to initial
+        this.setState({
+            postTitle: '',
+            eventDate: '',
+            postContent: ''
+        })
+      }
 
-    titleAndEventDateBox(){
+    titleBox(){
         return(<TextField
+            value={this.state.postTitle}
+            onChange={(e)=>{this.setState({postTitle: e.target.value})}}
             id="standard"
             label=""
             style={{ margin: 8 }}
@@ -52,55 +46,84 @@ class Mainbar extends Component {
     />);
     }
 
+    EventDateBox(){
+        return(<TextField
+            value={this.state.eventDate}
+            onChange={(e)=>{this.setState({eventDate: e.target.value})}}
+            id="standard"
+            label=""
+            style={{ margin: 8 }}
+            placeholder="Event Date"
+            helperText=""
+            required
+            margin="normal"
+            InputLabelProps={{
+                shrink: true,
+            }}
+    />);
+    }
+
+    addPost(){
+        console.log("Adding post to div");
+        if(!this.state.postTitle || !this.state.postContent || !this.state.eventDate){
+            return;
+        }
+        this.setState({
+            postTitle: '',
+            eventDate: '',
+            postContent: ''
+        })
+    }
+
     createPostBox(){
         var ifTrue = 
-        <div>
-            <div className="PostsDelete PostsCreate">
-                            Create
-            </div>
-            <div className="Posts">
-                <div className="CreatorNameClass"> By: {this.props.username} </div> 
-                <div className="PostTitleClass">  
-                    Title:
-                        <div className="InputPostTitleEventDateClass">
-                            {this.titleAndEventDateBox()}
-                        </div>
-                </div> 
-                <div className="PostTitleClass EventDateClass"> 
-                    Event Date: 
-                        <div className="InputPostTitleEventDateClass">
-                                {this.titleAndEventDateBox()}
-                        </div>
-                </div>  
-                <br></br>
-                <div className="InputPostContentClass"> 
-                    <TextField
-                        id="standard-full-width"
-                        label=""
-                        style={{ margin: 8 }}
-                        placeholder="Post Content"
-                        helperText=""
-                        fullWidth
-                        multiline
-                        margin="normal"
-                        required
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
+        <form>
+            <div>
+                <div className="PostsDelete PostsCreate">
+                                <input type="button" onClick={() => this.addPost()} value="Create" className="PostsCreate"/> 
+                </div>
+                <div className="Posts">
+                    <div className="CreatorNameClass"> By: {this.props.username} </div> 
+                    <div className="PostTitleClass">  
+                        Title:
+                            <div className="InputPostTitleEventDateClass">
+                                {this.titleBox()}
+                            </div>
+                    </div> 
+                    <div className="PostTitleClass EventDateClass"> 
+                        Event Date: 
+                            <div className="InputPostTitleEventDateClass">
+                                    {this.EventDateBox()}
+                            </div>
+                    </div>  
+                    <br></br>
+                    <div className="InputPostContentClass"> 
+                        <TextField
+                            value={this.state.postContent}
+                            onChange={(e)=>{this.setState({postContent: e.target.value})}}
+                            id="standard-full-width"
+                            label=""
+                            style={{ margin: 8 }}
+                            placeholder="Post Content"
+                            helperText=""
+                            fullWidth
+                            multiline
+                            margin="normal"
+                            required
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>;
+        </form>;
 
         var ifNotTrue = <div></div>;
         if(this.props.admin){
             return ifTrue;
         }
         return (ifNotTrue);
-    }
-
-    handlePostContentChange(){
-
     }
 
     allOtherPostsBox(){
