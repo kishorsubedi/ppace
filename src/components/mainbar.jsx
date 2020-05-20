@@ -44,6 +44,7 @@ class Mainbar extends Component {
             style={{ margin: 8 }}
             placeholder="Post Title"
             helperText=""
+            required
             margin="normal"
             InputLabelProps={{
                 shrink: true,
@@ -65,7 +66,7 @@ class Mainbar extends Component {
                             {this.titleAndEventDateBox()}
                         </div>
                 </div> 
-                <div className="EventDateClass"> 
+                <div className="PostTitleClass EventDateClass"> 
                     Event Date: 
                         <div className="InputPostTitleEventDateClass">
                                 {this.titleAndEventDateBox()}
@@ -82,6 +83,7 @@ class Mainbar extends Component {
                         fullWidth
                         multiline
                         margin="normal"
+                        required
                         InputLabelProps={{
                             shrink: true,
                         }}
