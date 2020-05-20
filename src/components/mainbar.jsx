@@ -104,9 +104,10 @@ class Mainbar extends Component {
     }
 
     allOtherPostsBox(){
+        var ctr = 0;
         return(<div> 
             {this.state.data.map(el => (
-                    <div>
+                    <div key={ctr++}>
                         <div className="PostsDelete">
                             Delete
                         </div>
