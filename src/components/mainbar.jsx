@@ -1,4 +1,13 @@
 import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import FilledInput from '@material-ui/core/FilledInput';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
 
 class Mainbar extends Component {
 
@@ -9,7 +18,6 @@ class Mainbar extends Component {
     state = {
         names : ['James', 'Paul', 'John', 'George', 'Ringo'],
         data: [],
-        isAdmin: true
     }
 
     componentDidMount() {
@@ -29,13 +37,68 @@ class Mainbar extends Component {
             );
     }
 
+    titleAndEventDateBox(){
+        return(<TextField
+            id="standard"
+            label=""
+            style={{ margin: 8 }}
+            placeholder="Post Title"
+            helperText=""
+            margin="normal"
+            InputLabelProps={{
+                shrink: true,
+            }}
+    />);
+    }
+
     createPostBox(){
-        var ifTrue = <div className="Posts">Kishor</div>;
+        var ifTrue = 
+        <div>
+            <div className="PostsDelete PostsCreate">
+                            Create
+            </div>
+            <div className="Posts">
+                <div className="CreatorNameClass"> By: {this.props.username} </div> 
+                <div className="PostTitleClass">  
+                    Title:
+                        <div className="InputPostTitleEventDateClass">
+                            {this.titleAndEventDateBox()}
+                        </div>
+                </div> 
+                <div className="EventDateClass"> 
+                    Event Date: 
+                        <div className="InputPostTitleEventDateClass">
+                                {this.titleAndEventDateBox()}
+                        </div>
+                </div>  
+                <br></br>
+                <div className="InputPostContentClass"> 
+                    <TextField
+                        id="standard-full-width"
+                        label=""
+                        style={{ margin: 8 }}
+                        placeholder="Post Content"
+                        helperText=""
+                        fullWidth
+                        multiline
+                        margin="normal"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                </div>
+            </div>
+        </div>;
+
         var ifNotTrue = <div></div>;
-        if(this.state.isAdmin){
+        if(this.props.admin){
             return ifTrue;
         }
         return (ifNotTrue);
+    }
+
+    handlePostContentChange(){
+
     }
 
     allOtherPostsBox(){

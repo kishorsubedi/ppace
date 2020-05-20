@@ -27,7 +27,7 @@ export default class App extends Component{
         return(
             <React.Fragment> 
                 <Topbar handleChange={this.handleChange} setAdminState={this.setAdminState} username={this.state.username} password={this.state.password}/>
-                <Mainbar admin={this.state.isAdmin}/>
+                <Mainbar admin={this.state.isAdmin} username={this.state.username}/>
             </React.Fragment>
             );
     }

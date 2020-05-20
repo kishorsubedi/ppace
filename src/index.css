@@ -75,7 +75,8 @@ code {
    margin: auto;
    margin-bottom: 20px;
    width: 75%;
-   height: 200px;
+   height: auto;
+   min-height: 200px;
    color: #4db2ff;
    text-align: center;
  }
@@ -93,7 +94,9 @@ code {
 
  .EventDateClass{
   float: right;
+  text-align: center;
   display: inline;
+  font-size:30px;
  }
 
  .PostContentClass{
@@ -107,3 +110,17 @@ code {
    float: right;
    color:red;
  }
+ .PostsCreate{
+   color:#00ffdd;
+ }
+
+ .InputPostContentClass{
+   color:black;
+   background-color: white;
+ }
+
+ .InputPostTitleEventDateClass{
+  color:black;
+  background-color: white;
+  display: inline;
+}
