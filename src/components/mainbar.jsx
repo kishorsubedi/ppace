@@ -68,6 +68,9 @@ class Mainbar extends Component {
         if(!this.state.postTitle || !this.state.postContent || !this.state.eventDate){
             return;
         }
+        var newPost = {"PostTitle": this.state.postTitle, "EventDate": this.state.eventDate, "PostContent": this.state.postContent};
+        this.state.data.splice(0,0,newPost);
+
         this.setState({
             postTitle: '',
             eventDate: '',
@@ -152,8 +155,8 @@ class Mainbar extends Component {
         console.log(this.props.admin);
         return (<React.Fragment>
             <div className="mainbar">
-                {this.createPostBox()}
-                {this.allOtherPostsBox()}              
+                {this.createPostBox()}            // create post box
+                {this.allOtherPostsBox()}         // posts already in db    
             </div>
         </React.Fragment> );
     }
