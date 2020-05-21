@@ -64,18 +64,56 @@ class Mainbar extends Component {
     }
 
     addPost(){
-        console.log("Adding post to div");
         if(!this.state.postTitle || !this.state.postContent || !this.state.eventDate){
-            return;
+            return false;
         }
-        var newPost = {"PostTitle": this.state.postTitle, "EventDate": this.state.eventDate, "PostContent": this.state.postContent};
-        this.state.data.splice(0,0,newPost);
+        var newPost = {"PostTitle": this.state.postTitle, "EventDate": this.state.eventDate, "PostContent": this.state.postContent, "CreatorName": this.props.username};
+        this.addPostFrontend(newPost);
+        this.addPostBackend(newPost);
+    }
 
+    addPostFrontend(newPost){
+        // console.log("Adding post to div");
+        
+        this.state.data.splice(0,0,newPost); //adding newlycreatedPost in state.data
+
+        //clearing textfield
         this.setState({
             postTitle: '',
             eventDate: '',
             postContent: ''
-        })
+        });
+    }
+
+    generateRandomHash() {
+        var length = 15;
+        var result           = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+           result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+     }
+
+    addPostBackend(newPost){
+        newPost["PostId"]  = this.generateRandomHash();
+        // console.log(JSON.stringify(newPost));
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newPost)
+        };
+        fetch(`https://ppace.azurewebsites.net/posts`, requestOptions)
+            .then(async response => {
+                const data = await response;
+            })
+            .catch(error => {
+                // this.setState({ errorMessage: error.toString() });
+                console.error('There was an error!', error);
+            });
+
     }
 
     createPostBox(){
@@ -155,19 +193,11 @@ class Mainbar extends Component {
         console.log(this.props.admin);
         return (<React.Fragment>
             <div className="mainbar">
-                {this.createPostBox()}            // create post box
-                {this.allOtherPostsBox()}         // posts already in db    
+                {this.createPostBox()}            
+                {this.allOtherPostsBox()}         
             </div>
         </React.Fragment> );
     }
-
-    async getPosts(name) 
-    {
-        let response = await fetch("https://ppace.azurewebsites.net/posts");
-        let data = await response.json()
-        console.log(data);
-    }
-
 
     // get() {
     //     console.log("Get() button clicked");
