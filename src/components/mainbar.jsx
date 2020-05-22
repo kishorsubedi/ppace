@@ -176,7 +176,7 @@ class Mainbar extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(postId)
         };
-        fetch(`http://127.0.0.1:5000/posts`, requestOptions)
+        fetch(`https://ppace.azurewebsites.net/posts`, requestOptions)
             .then(async response => {
                 const data = await response;
             })
