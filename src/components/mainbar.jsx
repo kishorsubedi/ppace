@@ -11,6 +11,7 @@ class Mainbar extends Component {
         postTitle: '',
         eventDate: '',
         postContent: '',
+        deletePostId: '',
         data: []
     }
 
@@ -33,7 +34,7 @@ class Mainbar extends Component {
         return(<TextField
             value={this.state.postTitle}
             onChange={(e)=>{this.setState({postTitle: e.target.value})}}
-            id="standard"
+            id="titleStandard"
             label=""
             style={{ margin: 8 }}
             placeholder="Post Title"
@@ -50,7 +51,7 @@ class Mainbar extends Component {
         return(<TextField
             value={this.state.eventDate}
             onChange={(e)=>{this.setState({eventDate: e.target.value})}}
-            id="standard"
+            id="eventdateStandard"
             label=""
             style={{ margin: 8 }}
             placeholder="Event Date"
@@ -167,22 +168,66 @@ class Mainbar extends Component {
         return (ifNotTrue);
     }
 
+    deletePostBackend(PostId){
+        var postId = {PostId: PostId};
+        //remove from backend
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(postId)
+        };
+        fetch(`http://127.0.0.1:5000/posts`, requestOptions)
+            .then(async response => {
+                const data = await response;
+            })
+            .catch(error => {
+                // this.setState({ errorMessage: error.toString() });
+                console.error('There was an error!', error);
+            });
+    }
+
+    deletePostFrontend(PostId){
+        // console.log("this.state.data");
+        this.setState({deletePostId: PostId});
+    }
+
+    deletePost(PostId){
+        // console.log("deleting", PostId);
+        this.deletePostFrontend(PostId);
+        this.deletePostBackend(PostId);
+    }
+
+    deletePostBox(el){
+        if(this.props.admin){
+            return(<div className="PostsDelete"><input type="button" onClick={() => this.deletePost(el.PostId)} value="Delete" className="PostsDelete"/> </div>);
+        }
+        return (<div></div>);
+    }
+
+    PostBox(el){
+        if(this.state.deletePostId != el.PostId){
+            return (
+                <div>
+                    {this.deletePostBox(el)}
+                    <div className="Posts">
+                        <div className="CreatorNameClass"> By: {el.CreatorName} </div> 
+                        <div className="PostTitleClass">  Title: {el.PostTitle} </div> 
+                        <div className="EventDateClass"> Event Date: {el.EventDate}</div>  
+                        <br></br>
+                        <div className="PostContentClass"> {el.PostContent} </div>
+                    </div> 
+                </div>
+            );
+        }
+        return (<div></div>);
+    }
+
     allOtherPostsBox(){
         var ctr = 0;
         return(<div> 
             {this.state.data.map(el => (
                     <div key={ctr++}>
-                        <div className="PostsDelete">
-                            Delete
-                        </div>
-                        <div className="Posts">
-                            <div className="CreatorNameClass"> By: {el.CreatorName} </div> 
-                            <div className="PostTitleClass">  Title: {el.PostTitle} </div> 
-                            <div className="EventDateClass"> Event Date: {el.EventDate}</div>  
-                            <br></br>
-                            <div className="PostContentClass"> {el.PostContent} </div>
-                        </div> 
-                        
+                        {this.PostBox(el)}
                     </div>
                            
                 ))}  

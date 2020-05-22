@@ -94,17 +94,17 @@ code {
  }
  
  .PostsDelete{
-   height: 100%;
-   width: 50px;
-   display: inline;
-   float: right;
-   color:red;
+  color:red;
+  background-color: #242424;
+  width:auto;
+  float:right;
  }
 
  .PostsCreate{
    color:#00ffdd;
    background-color: #242424;
    width:auto;
+   float:right;
  }
 
  .InputPostContentClass{
