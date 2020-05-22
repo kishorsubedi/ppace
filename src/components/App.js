@@ -14,10 +14,9 @@ export default class App extends Component{
     }
 
     setAdminState = (json) => {
-        console.log(json);
         if(String(json) === "true"){ 
             console.log("ds");
-            this.setState({isAdmin:true});
+            this.setState({username:'', password: '', isAdmin:true});
             return;
         }
         this.setState({isAdmin:false});
@@ -26,7 +25,7 @@ export default class App extends Component{
     render(){
         return(
             <React.Fragment> 
-                <Topbar handleChange={this.handleChange} setAdminState={this.setAdminState} username={this.state.username} password={this.state.password}/>
+                <Topbar admin={this.state.isAdmin} handleChange={this.handleChange} setAdminState={this.setAdminState} username={this.state.username} password={this.state.password}/>
                 <Mainbar admin={this.state.isAdmin} username={this.state.username}/>
             </React.Fragment>
             );

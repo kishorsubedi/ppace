@@ -25,7 +25,7 @@ class Topbar extends Component {
 
                     <div className="loginFlex">
                         <div className="loginBox">
-                            <Login handleChange={this.props.handleChange} setAdminState={this.props.setAdminState} username={this.props.username} password={this.props.password}/>
+                            <Login admin={this.props.admin} handleChange={this.props.handleChange} setAdminState={this.props.setAdminState} username={this.props.username} password={this.props.password}/>
                         </div>
                     </div>
                 </div> 

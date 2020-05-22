@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import Mainbar from "./mainbar";
+import '../index.css';
 
 export default class Login extends Component {
 
     render() {
+        console.log(this.props.admin);
         return (
             <React.Fragment>
 
@@ -15,14 +17,24 @@ export default class Login extends Component {
                     <input type="password" name="password" value={this.props.password} className="form-control" placeholder="Enter password"  onChange={this.props.handleChange}/>
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-block" onClick={(event) => this.handleClick(event)}>Login</button>
+                {this.logInButton()}
 
             </React.Fragment>
         );
     }
-    
 
-    async handleClick(event){
+    logInButton(){
+        if(this.props.admin){
+            return(<button type="submit" className="logout" onClick={(event) => this.handleLogout(event)}>Logout</button>);
+        }
+        return(<button type="submit" className="btn btn-primary btn-block" onClick={(event) => this.handleLogin(event)}>Login</button>);
+    }
+
+    handleLogout(){
+        this.props.setAdminState(JSON.parse('false'));
+    }
+    
+    async handleLogin(event){
         console.log(this.props.username);
         //console.log(this.state.username);
         //console.log(this.state.password);
