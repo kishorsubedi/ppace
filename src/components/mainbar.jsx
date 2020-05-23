@@ -11,7 +11,7 @@ class Mainbar extends Component {
         postTitle: '',
         eventDate: '',
         postContent: '',
-        deletePostId: '',
+        deletePostIds: [],
         data: []
     }
 
@@ -193,7 +193,10 @@ class Mainbar extends Component {
 
     deletePostFrontend(PostId){
         // console.log("this.state.data");
-        this.setState({deletePostId: PostId});
+        this.setState({ 
+            deletePostIds: this.state.deletePostIds.concat([PostId])
+          })
+        console.log(this.state.deletePostIds);
     }
 
     deletePost(PostId){
@@ -210,7 +213,7 @@ class Mainbar extends Component {
     }
 
     PostBox(el){
-        if(this.state.deletePostId != el.PostId){
+        if(!this.state.deletePostIds.includes(el.PostId)){
             return (
                 <div>
                     {this.deletePostBox(el)}
@@ -230,7 +233,6 @@ class Mainbar extends Component {
     }
 
     allOtherPostsBox(){
-        console.log(this.state.data);
         var dataCopy = this.state.data.slice().reverse();
         // this.state.data.reverse();
         var ctr = 0;
