@@ -125,19 +125,23 @@ class Mainbar extends Component {
                                 <input type="button" onClick={() => this.addPost()} value="Create" className="PostsCreate"/> 
                 </div>
                 <div className="Posts">
-                    <div className="CreatorNameClass"> By: {this.props.username} </div> 
-                    <div className="PostTitleClass">  
-                        Title:
-                            <div className="InputPostTitleEventDateClass">
-                                {this.titleBox()}
-                            </div>
-                    </div> 
-                    <div className="PostTitleClass EventDateClass"> 
-                        Event Date: 
-                            <div className="InputPostTitleEventDateClass">
-                                    {this.EventDateBox()}
-                            </div>
-                    </div>  
+                    <div className="PostTopbar">
+                        <div className="CreatorNameClass"> By: {this.props.username} </div> 
+                        <div className="PostTitleClass">  
+                            Title:
+                                <div className="InputPostTitleEventDateClass">
+                                    {this.titleBox()}
+                                </div>
+                        </div> 
+                        <div className="PostTitleClass EventDateClass"> 
+                            Event Date: 
+                                <div className="InputPostTitleEventDateClass">
+                                        {this.EventDateBox()}
+                                </div>
+                        </div>  
+                    </div>
+                 
+                    
                     <br></br>
                     <div className="InputPostContentClass"> 
                         <TextField
@@ -210,9 +214,11 @@ class Mainbar extends Component {
                 <div>
                     {this.deletePostBox(el)}
                     <div className="Posts">
+                        <div className="PostTopbar">
                         <div className="CreatorNameClass"> By: {el.CreatorName} </div> 
                         <div className="PostTitleClass">  Title: {el.PostTitle} </div> 
                         <div className="EventDateClass"> Event Date: {el.EventDate}</div>  
+                        </div>     
                         <br></br>
                         <div className="PostContentClass"> {el.PostContent} </div>
                     </div> 

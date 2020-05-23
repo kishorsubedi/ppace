@@ -16,7 +16,7 @@ class Topbar extends Component {
 
                 <div className="topBarContainer">
                     <div className="imgFlex"> 
-                        <img className="image" src={ ppace } style={{height:"110px",width:"200px",marginTop:"30px",marginLeft:"30px"}}/>
+                        <img className="image" src={ ppace }/>
                     </div>
 
                     <div className="announcementFlex">

@@ -19,13 +19,17 @@ code {
  justify-content: center;
  flex-wrap: wrap;
  width: 100%;
- height: 200px;
+ height: auto;
  position: sticky;
  top:0;
 }
 
  .image {
    flex: 1;
+   height:110px;
+   width:200px;
+   display: block;
+   margin: auto;
  }
  
 .imgFlex{
@@ -35,17 +39,17 @@ code {
 
 .announcementFlex{
   flex: 1;
-  align-content: center;
+  text-align: center;
   margin: auto;
   height: 100%;
-  width: 200px;
+  min-width: 200px;
 }
 
 .loginFlex {
   flex: 0.7;
   background-color: black;
   height:100%;
-  width: 200px;
+  min-width: 200px;
  }
  
  .loginBox {
@@ -70,6 +74,13 @@ code {
    min-height: 200px;
    color: #4db2ff;
    text-align: center;
+ }
+
+ .PostTopbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
  }
 
  .CreatorNameClass{
