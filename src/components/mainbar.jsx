@@ -69,6 +69,7 @@ class Mainbar extends Component {
             return false;
         }
         var newPost = {"PostTitle": this.state.postTitle, "EventDate": this.state.eventDate, "PostContent": this.state.postContent, "CreatorName": this.props.username};
+        console.log(this.props.username);
         this.addPostFrontend(newPost);
         this.addPostBackend(newPost);
     }
@@ -76,7 +77,7 @@ class Mainbar extends Component {
     addPostFrontend(newPost){
         // console.log("Adding post to div");
         
-        this.state.data.splice(0,0,newPost); //adding newlycreatedPost in state.data
+        this.state.data.push(newPost); //adding newlycreatedPost in state.data
 
         //clearing textfield
         this.setState({
@@ -229,9 +230,12 @@ class Mainbar extends Component {
     }
 
     allOtherPostsBox(){
+        console.log(this.state.data);
+        var dataCopy = this.state.data.slice().reverse();
+        // this.state.data.reverse();
         var ctr = 0;
         return(<div> 
-            {this.state.data.map(el => (
+            {dataCopy.map(el => (
                     <div key={ctr++}>
                         {this.PostBox(el)}
                     </div>
@@ -241,7 +245,6 @@ class Mainbar extends Component {
     }
 
     render() { 
-        console.log(this.props.admin);
         return (<React.Fragment>
             <div className="mainbar">
                 {this.createPostBox()}            

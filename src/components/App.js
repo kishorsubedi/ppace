@@ -16,7 +16,7 @@ export default class App extends Component{
     setAdminState = (json) => {
         if(String(json) === "true"){ 
             console.log("ds");
-            this.setState({username:'', password: '', isAdmin:true});
+            this.setState({password: "", isAdmin:true});
             return;
         }
         this.setState({isAdmin:false});
